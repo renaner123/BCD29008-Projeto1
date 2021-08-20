@@ -13,34 +13,28 @@ public class Emprestimo {
     private Timestamp dataEntrega;
     private Timestamp dataDevolucao;
     private int quantidadeEmprestimo;
-    private int idKit;
+    private int idEquipamentoEmprestado;
     private int idAluno;
     private int idAtividade;
 
-    public Emprestimo(int idEmprestimo, Timestamp dataSaida, Timestamp dataEntrega, Timestamp dataDevolucao, int quantidadeEmprestimo, int idKit, int idAluno, int idAtividade) {
-        this.idEmprestimo = idEmprestimo;
+    public Emprestimo(int idEmprestimo, Timestamp dataSaida ,Timestamp dataEntrega, Timestamp dataDevolucao, int quantidadeEmprestimo, int idAluno, int idAtividade, int idEquipamentoEmprestado) {
         this.dataSaida = dataSaida;
-        this.dataEntrega = dataEntrega;
         this.dataDevolucao = dataDevolucao;
+        this.idEmprestimo = idEmprestimo;
+        this.dataEntrega = dataEntrega;
         this.quantidadeEmprestimo = quantidadeEmprestimo;
-        this.idKit = idKit;
+        this.idEquipamentoEmprestado = idEquipamentoEmprestado;
         this.idAluno = idAluno;
         this.idAtividade = idAtividade;
     }
 
-    private java.sql.Timestamp obtemDataDevolucao(int atividade) throws ParseException {
-
-        if (atividade == 500) {
-            Date dt = new Date();
-            Calendar c = Calendar.getInstance();
-            c.setTime(dt);
-            c.add(Calendar.DATE, 15);
-            return new java.sql.Timestamp(c.getTime().getTime());
-        }else{
-            return java.sql.Timestamp.valueOf(Semestre.ultimoDiaLetivo);
-        }
+    public int getIdEquipamentoEmprestado() {
+        return idEquipamentoEmprestado;
     }
 
+    public void setIdEquipamentoEmprestado(int idEquipamentoEmprestado) {
+        this.idEquipamentoEmprestado = idEquipamentoEmprestado;
+    }
 
     public int getIdEmprestimo() {
         return idEmprestimo;
@@ -82,13 +76,6 @@ public class Emprestimo {
         this.quantidadeEmprestimo = quantidadeEmprestimo;
     }
 
-    public int getIdKit() {
-        return idKit;
-    }
-
-    public void setIdKit(int idKit) {
-        this.idKit = idKit;
-    }
 
     public int getIdAluno() {
         return idAluno;

@@ -4,13 +4,14 @@ public class Equipamento {
 
     private int idEquipamento;
     private String nomeMaterial;
-    private int vezesEmprestado;
     private boolean reserva;
     private boolean emprestado;
 
-    public Equipamento(int idEquipamento, String nomeMaterial) {
+    public Equipamento(int idEquipamento, String nomeMaterial, boolean emprestado, boolean reserva) {
         this.idEquipamento = idEquipamento;
         this.nomeMaterial = nomeMaterial;
+        this.emprestado = emprestado = false;
+        this.reserva = reserva = false;
     }
 
     public int getIdEquipamento() {
@@ -27,14 +28,6 @@ public class Equipamento {
 
     public void setNomeMaterial(String nomeMaterial) {
         this.nomeMaterial = nomeMaterial;
-    }
-
-    public int getVezesEmprestado() {
-        return vezesEmprestado;
-    }
-
-    public void setVezesEmprestado(int vezesEmprestado) {
-        this.vezesEmprestado = vezesEmprestado;
     }
 
     public boolean isReserva() {

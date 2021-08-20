@@ -54,7 +54,7 @@ public abstract class ConnectionFactory {
             String port = properties.getProperty("port");
             String dbname = properties.getProperty("database");
 
-            String url = "jdbc:mysql://" + host + ":" + port + "/" + dbname +"?useTimezone=true&serverTimezone=UTC";
+            String url = "jdbc:mysql://" + host + ":" + port + "/" + dbname;
 
             cnx = DriverManager.getConnection(url, properties);
 

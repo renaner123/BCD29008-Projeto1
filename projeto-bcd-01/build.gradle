@@ -10,6 +10,12 @@ repositories {
 }
 apply plugin: 'idea'
 
+plugins {
+    // Gradle Shadow plugin
+    id 'com.github.johnrengelman.shadow' version '4.0.0'
+    id 'java'
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
@@ -17,7 +23,11 @@ dependencies {
     // Driver JDBC para o MySQL
     implementation  group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
 }
-
+jar {
+    manifest {
+        attributes 'Main-Class': 'bcd.Principal'
+    }
+}
 
 test {
     useJUnitPlatform()

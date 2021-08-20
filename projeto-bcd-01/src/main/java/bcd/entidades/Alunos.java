@@ -6,13 +6,33 @@ public class Alunos {
     private String sobrenome;
     private boolean situacao;
     private int idCurso;
+    private boolean temEmprestimo;
+    private int penalidade = 0;
 
-    public Alunos(int matricula, String nome, String sobrenome, boolean situacao, int idCurso) {
+    public Alunos(int matricula, String nome, String sobrenome, boolean situacao, int idCurso, boolean emprestimo, int penalidade) {
         this.matricula = matricula;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.situacao = situacao;
         this.idCurso = idCurso;
+        this.temEmprestimo = emprestimo;
+        this.penalidade = penalidade;
+    }
+
+    public int getPenalidade() {
+        return penalidade;
+    }
+
+    public void setPenalidade(int penalidade) {
+        this.penalidade = penalidade;
+    }
+
+    public boolean isTemEmprestimo() {
+        return temEmprestimo;
+    }
+
+    public void setTemEmprestimo(boolean temEmprestimo) {
+        this.temEmprestimo = temEmprestimo;
     }
 
     public int getMatricula() {

@@ -47,24 +47,33 @@ public abstract class ConnectionFactory {
 
         try {
             // carregando as propriedades user, password e useSSL do arquivo database.properties
-            properties.load(getInputStream());
+            //properties.load(getInputStream());
+
+            //Pra gerar o arquivo .jar pelo InteliJ tive que deixar os dados de conexao aqui.
+            String host = "ampto.sj.ifsc.edu.br";
+            String port = "33006";
+            String dbname = "pp01renan";
+            String user = "renan";
+            String password = "bcd1234";
 
             // obtendo valores para host, port e dbname do arquivo properties
-            String host = properties.getProperty("host");
-            String port = properties.getProperty("port");
-            String dbname = properties.getProperty("database");
+            //String host = properties.getProperty("host");
+            //String port = properties.getProperty("port");
+            //String dbname = properties.getProperty("database");
 
             String url = "jdbc:mysql://" + host + ":" + port + "/" + dbname;
 
-            cnx = DriverManager.getConnection(url, properties);
+            cnx = DriverManager.getConnection(url, user, password);
 
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, "arquivo properties não encontrado", ex);
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, "erro com instrução SQL", ex);
         }
+//        catch (IOException ex) {
+//            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, "arquivo properties não encontrado", ex);
+//        }
 
         return cnx;
     }
+
 
 }

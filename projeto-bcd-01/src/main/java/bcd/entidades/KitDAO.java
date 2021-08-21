@@ -8,6 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * Classe responsavel por comunicar com a tabela Kit do banco de dados
+ */
+
 public class KitDAO {
 
     Map<Integer,Kit> mapKit = new HashMap<Integer,Kit>();
@@ -16,6 +20,10 @@ public class KitDAO {
 
     }
 
+    /**
+     *
+     * @return uma hash contendo os Equipamentos da tebla Equipamento do bando de dados
+     */
     public Map<Integer,Kit> obtemEquipamentos() {
 
         String query = "SELECT * FROM Kit ";
@@ -47,6 +55,13 @@ public class KitDAO {
 
     }
 
+    /**
+     *
+     * @param idKit recebe id do kit
+     * @param idEmprestimo recebe o id que foi gerado ao emprestimo
+     * @param matricula recebe matricula do aluno que fez o emprestimo
+     * @return true caso insira, false caso nao insira ou gere erro
+     */
     public boolean inserirKitTemEmprestimo(int idKit, int idEmprestimo, int matricula){
 
         String query = "INSERT INTO Kit_has_Emprestimo (Kit_idKit, Emprestimo_idEmprestimo, Emprestimo_matricula) values(?,?,?) ";
@@ -68,6 +83,11 @@ public class KitDAO {
         return true;
     }
 
+    /**
+     *
+     * @param idEmprestimo recebe id do emprestimo que se deseja remover do Kit_has_Emprestimo
+     * @return
+     */
     public boolean deleteKitTemEmprestimo(int idEmprestimo){
 
         String query = "DELETE FROM Kit_has_Emprestimo WHERE Emprestimo_idEmprestimo = ?";
@@ -86,6 +106,10 @@ public class KitDAO {
         return true;
     }
 
+    /**
+     *
+     * @return string de todos os kit no banco de dados
+     */
     public String kitEmDb() {
         StringBuilder sb = new StringBuilder();
 

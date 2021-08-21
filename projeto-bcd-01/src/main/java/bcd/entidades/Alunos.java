@@ -1,5 +1,8 @@
 package bcd.entidades;
 
+/**
+ * Classe responsável por gerar um objeto de Aluno
+ */
 public class Alunos {
     private int matricula;
     private String nome;
@@ -9,6 +12,16 @@ public class Alunos {
     private boolean temEmprestimo;
     private int penalidade = 0;
 
+    /**
+     * Método construtor de Aluno
+     * @param matricula recebe matricula do aluno
+     * @param nome recebe nome do aluno
+     * @param sobrenome recebe sobrenome do aluno
+     * @param situacao informa a situacao do aluno no curso
+     * @param idCurso informa id do curso cursado pelo aluno
+     * @param emprestimo informa se o usuario possui emprestimo vigente
+     * @param penalidade recebe penalidade em dias por entregar emprestimo fora da data de devolucao
+     */
     public Alunos(int matricula, String nome, String sobrenome, boolean situacao, int idCurso, boolean emprestimo, int penalidade) {
         this.matricula = matricula;
         this.nome = nome;
@@ -18,6 +31,7 @@ public class Alunos {
         this.temEmprestimo = emprestimo;
         this.penalidade = penalidade;
     }
+
 
     public int getPenalidade() {
         return penalidade;

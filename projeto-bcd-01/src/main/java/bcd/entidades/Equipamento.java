@@ -1,5 +1,8 @@
 package bcd.entidades;
 
+/**
+ * Classe responsavel por gerar um objeto Equipamento
+ */
 public class Equipamento {
 
     private int idEquipamento;
@@ -7,6 +10,13 @@ public class Equipamento {
     private boolean reserva;
     private boolean emprestado;
 
+    /**
+     * Construtor de um objeto Equipamento
+     * @param idEquipamento recebe id do Equipamento
+     * @param nomeMaterial recebe nome do material
+     * @param emprestado informa se o equipamento esta emprestado ou nao
+     * @param reserva informa se o equipamento tem reserva ou nao
+     */
     public Equipamento(int idEquipamento, String nomeMaterial, boolean emprestado, boolean reserva) {
         this.idEquipamento = idEquipamento;
         this.nomeMaterial = nomeMaterial;

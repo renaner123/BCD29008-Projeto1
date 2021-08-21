@@ -1,21 +1,30 @@
 package bcd.entidades;
-
 import bcd.db.ConnectionFactory;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Classe responsável por comunicar com a tabela ALunos do banco de dados.
+ */
+
 public class AlunosDAO {
 
     Map<Integer,Alunos> mapAlunos = new HashMap<Integer,Alunos>();
 
+    /**
+     * Construtor vazio para ser instanciado.
+     */
     public AlunosDAO(){
 
     }
 
+    /**
+     * Acessa o banco de dados e retorna os alunos armazenados
+     * @return uma Hash contendo os alunos
+     */
     public  Map<Integer,Alunos> obtemAlunosDB(){
 
         String query = "SELECT * FROM Alunos ";
@@ -48,6 +57,12 @@ public class AlunosDAO {
         return this.mapAlunos;
     }
 
+    /**
+     *
+     * @param matricula recebe matricula do aluno a ser alterado
+     * @param temEmprestimo recebe se o aluno tem emprestimo ou nao
+     * @return true sempre, exceto quando há excecao na conexao com o banco
+     */
     public boolean alterarTemEmprestimoAluno(int matricula, boolean temEmprestimo){
 
         String query = "UPDATE Alunos SET temEmprestimo = ? WHERE matricula = ? ";
@@ -66,6 +81,12 @@ public class AlunosDAO {
         return true;
     }
 
+    /**
+     *
+     * @param matricula recebe matricula do aluno a ser alterado
+     * @param penalidade insere a penalidade que o aluno recebeu
+     * @return true sempre, exceto quando há excecao na conexao com o banco
+     */
     public boolean setPenalidade(int matricula, int penalidade){
 
         String query = "UPDATE Alunos SET penalidade = ? WHERE matricula = ? ";
@@ -84,6 +105,10 @@ public class AlunosDAO {
         return true;
     }
 
+    /**
+     *
+     * @return uma string contendo as informacoes da tebela Alunos do banco de dados
+     */
     public String alunosEmDb() {
         StringBuilder sb = new StringBuilder();
 

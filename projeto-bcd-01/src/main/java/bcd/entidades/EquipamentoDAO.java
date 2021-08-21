@@ -6,17 +6,26 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
+/**
+ * Classe responsável por comunicar com a tabela Equipamento do banco de dados
+ */
 
 public class EquipamentoDAO {
 
     Map<Integer,Equipamento> mapEquipamentos = new HashMap<Integer,Equipamento>();
     private Equipamento auxEquipamento;
 
-
+    /**
+     * Construtor para classe ser instanciada
+     */
     public EquipamentoDAO(){
 
     }
 
+    /**
+     *
+     * @return hash contendo todos os equipamentos do banco de dados
+     */
     public Map<Integer,Equipamento>  obtemEquipamentosBD(){
 
         String query = "SELECT * FROM Equipamento ";
@@ -46,6 +55,13 @@ public class EquipamentoDAO {
         return this.mapEquipamentos;
     }
 
+    /**
+     *
+     * @param idEquipamento recebe id do equipamento a ser inserido na tabela Equipamento
+     * @param idEmprestimo recebe id do emprestimo
+     * @param matricula recebe matricula do aluno que fez o emprestimo
+     * @return true sempre e false caso haja erro na conexao com banco de dados\
+     */
     public boolean inserirEquipamentoTemEmprestimo(int idEquipamento, int idEmprestimo, int matricula){
 
         String query = "INSERT INTO Equipamento_has_Emprestimo (Equipamento_idEquipamento, Emprestimo_idEmprestimo, Emprestimo_matricula) values(?,?,?) ";
@@ -67,7 +83,11 @@ public class EquipamentoDAO {
         return true;
     }
 
-
+    /**
+     *
+     * @param idEmprestimo recebe id do emprestimo a ser retirado ta bela Equipamento_has_Equipamento
+     * @return true caso consiga remover, false caso haja excecao
+     */
     public boolean deleteEquipamentoTemEmprestimo(int idEmprestimo){
 
         String query = "DELETE FROM Equipamento_has_Emprestimo WHERE Emprestimo_idEmprestimo = ?";
@@ -86,6 +106,10 @@ public class EquipamentoDAO {
         return true;
     }
 
+    /**
+     *
+     * @return uma string contendo os equipamento cadastrados no banco de dados
+     */
     public String equipamentosEmDb() {
         StringBuilder sb = new StringBuilder();
 

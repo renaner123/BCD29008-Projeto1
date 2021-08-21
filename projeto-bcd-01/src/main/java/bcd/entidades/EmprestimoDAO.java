@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import static java.lang.Math.abs;
 
+/**
+ * Classe que faz a comunicação com o banco de dados para gerar os emprestimos.
+ */
 public class EmprestimoDAO {
 
     Map<Integer,Emprestimo> mapEmprestimos = new HashMap<Integer,Emprestimo>();
@@ -23,10 +26,17 @@ public class EmprestimoDAO {
     private boolean temEquip;
     private int idEmprestimo = 0;
 
+    /**
+     * Construtor vazio para ser possivel ser instanciado
+     */
     public EmprestimoDAO(){
 
     }
 
+    /**
+     *
+     * @return uma string com os emprestimos vigentes
+     */
     public String emprestimosEmAndamento() {
         StringBuilder sb = new StringBuilder();
 
@@ -69,6 +79,11 @@ public class EmprestimoDAO {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param material recebe material que se deseja buscar nos emprestimos
+     * @return uma stirng contendo as informações do emprestimo referente ao material
+     */
     public String emprestimoDeterminadoMaterial(int material) {
         StringBuilder sb = new StringBuilder();
 
@@ -113,6 +128,11 @@ public class EmprestimoDAO {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param matriculaFind recebe matricula que se deseja buscar emprestimos
+     * @return uma string com as informacoes do emprestimo do aluno com matriculaFind
+     */
     public String emprestimoDeterminadoAluno(int matriculaFind) {
 
         StringBuilder sb = new StringBuilder();
@@ -158,6 +178,10 @@ public class EmprestimoDAO {
         return sb.toString();
     }
 
+    /**
+     *
+     * @return uma string com as informacoes dos emprestimos que ja estao vencidos
+     */
     public String emprestimosEmAndamentoVencidos() {
 
         StringBuilder sb = new StringBuilder();
@@ -203,6 +227,10 @@ public class EmprestimoDAO {
         return sb.toString();
     }
 
+    /**
+     *
+     * @return retorna uma hash contendo todos os emprestimos da tebela Emprestimos do banco de dados
+     */
     public Map<Integer,Emprestimo>  obtemEmprestimosDB() {
 
         String query = "SELECT * FROM Emprestimo ";
@@ -237,6 +265,14 @@ public class EmprestimoDAO {
         return this.mapEmprestimos;
     }
 
+    /**
+     *
+     * @param matricula recebe matricula do aluno que vai efetuar o emprestimo
+     * @param id recebe id do equipamento que o aluno deseja emprestar
+     * @param idAtividade recebe id da atividade a qual o emprestimo será usado
+     * @return true caso consegui inserir, false caso o aluno já tenha emprestimo ou não esteja ativo no curso ou tem penalidade ou gere erro no banco de dados
+     * @throws ParseException caso não consiga formatar a data.
+     */
     public boolean efetuarEmprestimo(int matricula, int id, int idAtividade) throws ParseException {
         if(this.checkMatriculaDb(matricula) && this.verificaPenalidadeAluno(matricula)){
             this.auxAluno = this.consultaAluno.obtemAlunosDB().get(matricula);
@@ -252,6 +288,13 @@ public class EmprestimoDAO {
         return false;
     }
 
+    /**
+     *
+     * @param idEmprestimo recebe id do emprestimo que deseja renovar
+     * @param matricula recebe matricula do aluno que fez o emprestimo
+     * @return true caso consiga renovar, false caso o aluno não seja ativo ou já fez 3 renovacoes ou ja passou da data de devolucao ou gere erro no banco de dados
+     * @throws ParseException caso não consiga formatar a data.
+     */
     public boolean renovarEmprestimo(int idEmprestimo, int matricula) throws ParseException {
 
         java.util.Date date = new Date();
@@ -278,6 +321,11 @@ public class EmprestimoDAO {
         return false;
     }
 
+    /**
+     *
+     * @param idEmprestimo recebe o id do emprestimo que se deseja finalizar
+     * @return true caso consiga finalizar, false caso o aluno não tenha emprestimo ou gere erro no banco de dados
+     */
     public boolean finalizarEmprestimo(int idEmprestimo){
 
         if(this.obtemEmprestimosDB().containsKey(idEmprestimo)){
@@ -327,6 +375,11 @@ public class EmprestimoDAO {
         return false;
     }
 
+    /**
+     *
+     * @param matricula recebe matricula para verificar se existe no banco de dados
+     * @return true caso exista, false caso não exista.
+     */
     private boolean checkMatriculaDb(int matricula){
 
         if(this.consultaAluno.obtemAlunosDB().containsKey(matricula)){
@@ -335,6 +388,11 @@ public class EmprestimoDAO {
             return false;
     }
 
+    /**
+     *
+     * @param id recebe id a ser checado no banco de dados
+     * @return true caso o equipamento exista, false caso não exista
+     */
     private boolean checkIdDb(int id){
 
         if(this.consultaEquipamento.obtemEquipamentosBD().containsKey(id)) {
@@ -349,6 +407,14 @@ public class EmprestimoDAO {
         }
     }
 
+    /**
+     *
+     * @param matricula recebe matricula do aluno que vai efetuar o emprestimo
+     * @param idEmprestado recebe id do equipamento que o aluno deseja emprestar
+     * @param idAtividade recebe id da atividade a qual o emprestimo será usado
+     * @return true caso consegui inserir, false caso o aluno já tenha emprestimo ou não esteja ativo no curso ou tem penalidade ou gere erro no banco de dados
+     * @throws ParseException caso não consiga formatar a data.
+     */
     public boolean inserirEmprestimo(int matricula, int idAtividade, int idEmprestado) throws ParseException {
         StringBuilder sb = new StringBuilder();
 
@@ -393,6 +459,11 @@ public class EmprestimoDAO {
         return true;
     }
 
+    /**
+     *
+     * @param emprestimo recebe o emprestido que deseja renovar
+     * @return true caso consiga renovar, false caso existe erro na conexao com o banco
+     */
     public boolean updateRenovacaoEmprestimo(Emprestimo emprestimo){
 
         String query = "UPDATE Emprestimo SET dataDevolucao = ?, quantidadeEmprestimo = ? WHERE idEmprestimo = ? ";
@@ -413,6 +484,12 @@ public class EmprestimoDAO {
 
     }
 
+    /**
+     *
+     * @param data1 recebe uma data Timestamp
+     * @param data2 recebe uma data Timestamp
+     * @return retorna se data1 está antes de data2. No caso, pra ver se está atrasado ou nao
+     */
     private boolean compararDatas(Timestamp data1, Timestamp data2){
         if(data1.before(data2)){
             return true;
@@ -420,6 +497,12 @@ public class EmprestimoDAO {
         return false;
     }
 
+    /**
+     *
+     * @param atividade recebe atividade para verificar a data de devolucao do emprestimo
+     * @return a data com 15 dias para atividade 500 ou data de fim do semestre
+     * @throws ParseException caso haja erro na hora de formatar a data
+     */
     private java.sql.Timestamp obtemDataDevolucao(int atividade) throws ParseException {
         if (atividade == 500) {
             Date dt = new Date();
@@ -430,15 +513,25 @@ public class EmprestimoDAO {
         }else{
             return Timestamp.valueOf(Semestre.ultimoDiaLetivo);
         }
-
     }
-
+    /**
+     *
+     * @param oldTs recebe a data mais antiga
+     * @param newTs recebe a data mais atual
+     * @param timeUnit informa a unidade que se deseja comparar
+     * @return retorna quantidade de dias de deifença entre as datas
+     */
     private int getDateDiff(Timestamp oldTs, Timestamp newTs, TimeUnit timeUnit) {
         long diffInMS = newTs.getTime() - oldTs.getTime();
         int result = Math.toIntExact(timeUnit.convert(diffInMS, TimeUnit.MILLISECONDS)/24);
         return Math.abs(result);
     }
 
+    /**
+     *
+     * @param matricula recebe matricula que se deseja verificar a penalidade
+     * @return false caso existe penalidade ou não encontre no banco. True se nao tiver penalidade
+     */
     private boolean verificaPenalidadeAluno(int matricula){
         if(this.consultaAluno.obtemAlunosDB().containsKey(matricula)){
             this.auxAluno = this.consultaAluno.obtemAlunosDB().get(matricula);

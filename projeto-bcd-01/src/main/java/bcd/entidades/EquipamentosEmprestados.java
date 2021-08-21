@@ -2,6 +2,9 @@ package bcd.entidades;
 
 import java.util.List;
 
+/**
+ * Classe para instaciar um objeto dos equipamentos emprestados. Nao foi utilizada
+ */
 public class EquipamentosEmprestados {
     private int idKit;
     private int idEquipamento;

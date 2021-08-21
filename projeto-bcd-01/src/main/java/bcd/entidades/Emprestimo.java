@@ -6,6 +6,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Classe responsável por gerar um objeto do tipo Emprestimo.
+ */
 public class Emprestimo {
 
     private int idEmprestimo;
@@ -16,6 +19,18 @@ public class Emprestimo {
     private int idEquipamentoEmprestado;
     private int idAluno;
     private int idAtividade;
+
+    /**
+     * Construtor de um objeto Emprestimo
+     * @param idEmprestimo recebe id do emprestimo
+     * @param dataSaida redebe data de saida do emprestimo
+     * @param dataEntrega recebe data que o emprestimo foi devolvido
+     * @param dataDevolucao recebe a data maxima a qual o emprestido deve ser devolvido
+     * @param quantidadeEmprestimo informa quantidade de vezes que o emprestimo foi renovado
+     * @param idAluno recebe o id do aluno que fez o emprestimo
+     * @param idAtividade recebe o id da atividade a qual o aluno vai usar o emprestimo
+     * @param idEquipamentoEmprestado recebe o id do equipamento que foi emprestado
+      */
 
     public Emprestimo(int idEmprestimo, Timestamp dataSaida ,Timestamp dataEntrega, Timestamp dataDevolucao, int quantidadeEmprestimo, int idAluno, int idAtividade, int idEquipamentoEmprestado) {
         this.dataSaida = dataSaida;

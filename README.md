@@ -45,13 +45,13 @@ O projeto proposto pode ser visto neste [arquivo](img/projeto1.pdf).
 - [x] Para atividades de ensino, a data de entrega, mesmo para as renovações, não deve ultrapassar o último dia letivo do semestre
 - [x] Para as atividades de pesquisa,extensão e TCC o aluno poderá fazer uma renovação de forma que continue com o item emprestado durante as férias acadêmicas.
 
-## Digrama ER
+## Diagrama ER
 
 <div style="text-align:center">
    <img src="modelagem.png" />
 </div>
 
-## Instruções para compilar o projeto
+## Instruções para compilar e executar o projeto
 
 O projeto em si já possui um arquivo .jar que foi gerado pela IDE e se encontram em [projeto-bcd-01/out/arifacts](projeto-bcd-01/out/artifacts). 
 Para executar a classe Principal da pasta raiz será necessário usar o comando abaixo

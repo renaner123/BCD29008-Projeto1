@@ -304,7 +304,7 @@ public class EmprestimoDAO {
             this.auxEmprestimo = this.obtemEmprestimosDB().get(idEmprestimo);
             if(auxEmprestimo.getIdAluno() == matricula){
                 this.auxAluno = this.consultaAluno.obtemAlunosDB().get(matricula);
-                if(this.auxAluno.isSituacao() && this.auxEmprestimo.getQuantidadeEmprestimo()<RENOVACOES && this.compararDatas(dataAgora,this.auxEmprestimo.getDataDevolucao())){
+                if(this.auxAluno.isSituacao() && this.auxEmprestimo.getQuantidadeEmprestimo()<RENOVACOES && this.compararDatas(dataAgora,this.auxEmprestimo.getDataDevolucao(),this.auxEmprestimo.getIdAtividade())){
                     java.sql.Timestamp novadataDevolucao = this.obtemDataDevolucao(this.auxEmprestimo.getIdAtividade());
                     this.auxEmprestimo.setDataDevolucao(novadataDevolucao);
                     this.auxEmprestimo.setQuantidadeEmprestimo(this.auxEmprestimo.getQuantidadeEmprestimo()+1);
@@ -490,9 +490,13 @@ public class EmprestimoDAO {
      * @param data2 recebe uma data Timestamp
      * @return retorna se data1 está antes de data2. No caso, pra ver se está atrasado ou nao
      */
-    private boolean compararDatas(Timestamp data1, Timestamp data2){
+    private boolean compararDatas(Timestamp data1, Timestamp data2, int idAtividade){
         if(data1.before(data2)){
             return true;
+        }else{
+            if(idAtividade==501 || idAtividade == 502 || idAtividade == 503){
+                return true;
+            }
         }
         return false;
     }

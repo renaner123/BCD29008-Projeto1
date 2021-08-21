@@ -3,11 +3,10 @@
 <!--ts-->
    * [Projeto proposto](#Projeto-proposto-e-solução)
    * [Funcionalidades implementadas](#Funcionalidades-implementadas) 
+   * [Regras de négocios implementadas](#Regras-de-négocios-implementadas)
    * [Digrama ER](#Diagrama-ER)
    * [Instruções para compilar e executar o projeto](#Instruções-para-compilar-e-executar-o-projeto)
-     * [Compilando e executando pelo terminal com Javac](#Compilando-e-executando-pelo-terminal-com-Javac)
-     * [Compilando e executando pelo terminal com Gradlew](#Compilando-e-executando-pelo-terminal-com-Gradlew)
-     * [Executando arquivo jar gerado pelo InteliJ](#Executando-arquivo-jar-gerado-pelo-InteliJ)
+
    * [Instruções para fazer emprestimos](#Instruções-para-fazer-emprestimos)
 
 
@@ -19,65 +18,40 @@ O projeto proposto pode ser visto neste [arquivo](img/projeto1.pdf).
 
 ## Funcionalidades implementadas
 
-<h4 align="center"> 
-	🚧 Em construção...  🚧
-</h4>
+- [x] Efetuar emprestimo
+- [x] Renovar emprestimo
+- [x] Finalizar emprestimo
+- [x] Relatório sobre todos os empréstimos em andamento
+- [x] Relatório sobre todos os alunos que já emprestaram um determinado equipamento;
+- [x] Relatório sobretodos os equipamentos emprestados por um determinado aluno
+- [x] Relatório sobre empréstimos emandamento e que estão vencidos
+- [x] Relatório de todos equipamentos cadastrados no banco
+- [x] Relatório de todos kits cadastrados no banco
+- [x] Relatório de todos alunos cadastrados no banco
+- [x] Banco de dados MySQL.
+- [x] Aplicação Java desktop
+- [ ] Usar database.properties dentro de resources. O arquivo .jar gerado pela IDE não funcionou dessa forma, tive que deixar os dados de acesso dentro do ConnectionFactory.
+- [x] Modelagem do banco de dados é relacional
+- [x] Conjunto de instruções DDL e DML para criar e povoar a base de dados com nome ddl-dml.sql na raiz do projeto.
 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-
+## Regras de négocios implementadas
+- [x] Somente alunos ativos no curso e sem débitos podem fazer empestimo;
+- [x] Aluno pode fazer somente 1 emprestimo por vez;
+- [ ] 1 Emprestimo pode ter registrados vários equipamentos ou kits. -> Na minha implementação aluno só pode emprestar 1 equipamento ou 1 kit;
+- [x] Prazo para o empréstimo depende da atividade na qual o aluno usará o equipamento;
+- [x] Ao aluno é dada a possibilidade de renovar um empréstimo somente antes do mesmo vencer
+- [x] Aluno pode renovar um emprestimo por no máximo 3 vezes;
+- [ ] Reserva para o emprestimo/equipamento;
+- [x] Para atividades de ensino, a data de entrega, mesmo para as renovações, não deve ultrapassar o último dia letivo do semestre
+- [x] Para as atividades de pesquisa,extensão e TCC o aluno poderá fazer uma renovação de forma que continue com o item emprestado durante as férias acadêmicas.
 
 ## Digrama ER
 
 <div style="text-align:center">
    <img src="modelagem.png" />
 </div>
+
 ## Instruções para compilar o projeto
-
-### Compilando e executando pelo terminal com Javac
-
-Estando na pasta src/main/java a classe Principal pode ser compilada da seguinte forma
-
-```shell
-    javac bcd/Principal.java 
-```
-Para executar basta executar o arquivo compilado
-
-```
-    java bcd.Principal 
-```
-
-### Compilando e executando pelo terminal com Gradlew
-
-Pra compilar o projeto, é necessário ir ao diretório raiz do projeto e usar o comando:
-
-```shell
-    ./gradlew build
-```
-Caso ocorra tudo certo, irá retornar a mensagem <strong>BUILD SUCCESSFUL</strong> e será gerado o arquivo projeto-bcd-01-1.0-SNAPSHOT em [projeto-bcd-01/build/libs](projeto-bcd-01/build/libs).
-
-Com o arquivo compilado pelo Gradlew, a executação do projeto pode ser feita com:
-
-```shell
-    java -cp build/libs/projeto-bcd-01-1.0-SNAPSHOT.jar bcd.Principal
-```
-
-### Executando arquivo jar gerado pelo InteliJ
 
 O projeto em si já possui um arquivo .jar que foi gerado pela IDE e se encontram em [projeto-bcd-01/out/arifacts](projeto-bcd-01/out/artifacts). 
 Para executar a classe Principal da pasta raiz será necessário usar o comando abaixo
@@ -88,33 +62,28 @@ Para executar a classe Principal da pasta raiz será necessário usar o comando 
 
 ## Instruções para fazer emprestimos
 
-Aqui estão alguns exemplos de emprestimos para tesar as funcionalidades implementadas.
+Aqui estão alguns exemplos de emprestimos para tesar as funcionalidades implementadas. As instruções que vão funcionar possui *sucesso*, as que não podem ser feitas tem *falha* nos exemplos abaixo.
 
 
-<h4 align="center"> 
-	🚧 Em construção...  🚧
-</h4>
+* Aluno com matricula 129 não possui emprestimo e é ativo no curso. Use essa matricula e um id de atividade 500, para efetuar um emprestimo; *Sucesso*, gera data de devolução para 15 dias.
+  
+* Aluno com matricula 123 já possui emprestimo e está atrasado. Use essa matricula para tentar renovar o emprestimo 700; *Falha*, já passou da data de devolução.
 
+* Emprestimo 700 está atrasado. Use essa id para finalizar o emprestimo do aluno 123; *Sucesso*. Irá gerar penalidade para o aluno.
 
+* Aluno com matricula 123 não possui emprestimo, mas está com penalidade. Use essa matricula e um id de atividade entre(500,501 e 502) para efetuar um emprestimo; *Falha*, aluno está com penalidade.
 
-129 0 emprestimo ativo 500 -> fazer emprestimo - Sucesso, 15 dias para devolução
+* Aluno com matricula 128 tem emprestimo e não está atrasado. Use essa matricula para tentar renovar o emprestimo 708. Sucesso.
 
-700 123 -> renovar -> Falha, já passou da data de devolução
+* Aluno com matricula 128 tem emprestimo e não está atrasado. Use essa matricula para tentar renovar o emprestimo 708. Sucesso.
 
-700 -> finalizar -> Sucesso. Gerou penalidade para aluno 123
+* Aluno com matricula 128 tem emprestimo e não está atrasado. Use essa matricula para tentar renovar o emprestimo 708; *falha*, aluno já renovou 3 vezes esse emprestimo.
 
-700 0 emprestivo ativo -> fazer emprestimo - Falha, está com dias de penalidade
+* Aluno com matricula 126 tem emprestimo e não está atrasado. Use essa matricula para finalizar o emprestimo 703; *sucesso*, aluno está em dia, não gerou penalidade.
 
-708 128 renovar -> Sucesso
+* Aluno com matricula 127 não possui emprestimo e não é ativo no curso. Use essa matricula para tentar fazer um emprestimo; *falha*, aluno não está ativo no curso.
 
-708 128 renovar -> Sucesso
+* Aluno com matricula 125 possui emprestimo e é ativo no curso. Use essa matricula para tentar fazer um emprestimo; *falha*, aluno já possui um emprestimo vigente
 
-708 128 renovar -> falha, já renovou 3 vezes
+* Aluno com matricula 131 não possui emprestimo e é ativo no curso. Use essa matricula para fazer um emprestimo com id de atividade 501; *sucesso*, gera data de devolução sendo o fim do semestre.
 
-703 126 finalizar - sucesso, sem penalidade
-
-127 0 emprestimo n ativo -> falha, não está ativo no curso
-
-125 1 emprestimo ativo -> falha, já tem um emprestimo vigente
-
-131 0 emmprestimo ativo 501 - Sucesso, datadevolucao fim semestre

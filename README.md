@@ -30,7 +30,7 @@ O projeto proposto pode ser visto neste [arquivo](img/projeto1.pdf).
 - [x] Relatório de todos alunos cadastrados no banco
 - [x] Banco de dados MySQL.
 - [x] Aplicação Java desktop
-- [ ] Usar database.properties dentro de resources. O arquivo .jar gerado pela IDE não funcionou dessa forma, tive que deixar os dados de acesso dentro do ConnectionFactory.
+- [x] Usar database.properties dentro de resources. 
 - [x] Modelagem do banco de dados é relacional
 - [x] Conjunto de instruções DDL e DML para criar e povoar a base de dados com nome ddl-dml.sql na raiz do projeto.
 
@@ -53,11 +53,27 @@ O projeto proposto pode ser visto neste [arquivo](img/projeto1.pdf).
 
 ## Instruções para compilar e executar o projeto
 
-O projeto em si já possui um arquivo .jar que foi gerado pela IDE e se encontram em [projeto-bcd-01/out/arifacts](projeto-bcd-01/out/artifacts). 
-Para executar a classe Principal da pasta raiz será necessário usar o comando abaixo
+Pra compilar o projeto, é necessário ir ao diretório raiz do projeto e usar o comando:
+
+```
+   gradlew shadowJar
+```
+Caso ocorra tudo certo, irá retornar a mensagem BUILD SUCCESSFUL e será gerado o arquivo projeto-bcd-01-1.0-SNAPSHOT-all.jar em [projeto-bcd-01/build/libs](projeto-bcd-01/build/libs).
 
 ```shell
-    java -jar out/artifacts/projeto_bcd_01_main_jar/projeto-bcd-01.main.jar
+    java -jar build/libs/projeto-bcd-01-1.0-SNAPSHOT-all.jar
+```
+Se preferir também pode executar com:
+
+```shell
+   java -cp build/libs/projeto-bcd-01-1.0-SNAPSHOT-all.jar bcd.Principal
+```
+
+O projeto em si já possui um arquivo .jar que foi gerado pela IDE e se encontram em [projeto-bcd-01/out/arifacts](projeto-bcd-01/out/artifacts). 
+Para executar a classe Principal da pasta raiz será necessário usar o comando abaixo 
+
+```shell
+   java -jar out/artifacts/projeto_bcd_01_main_jar/projeto-bcd-01.main.jar
 ```
 
 ## Instruções para fazer emprestimos

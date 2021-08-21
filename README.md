@@ -58,7 +58,7 @@ Pra compilar o projeto, é necessário ir ao diretório raiz do projeto e usar o
 ```
    gradlew shadowJar
 ```
-Caso ocorra tudo certo, irá retornar a mensagem BUILD SUCCESSFUL e será gerado o arquivo projeto-bcd-01-1.0-SNAPSHOT-all.jar em [projeto-bcd-01/build/libs](projeto-bcd-01/build/libs).
+Caso ocorra tudo certo, irá retornar a mensagem BUILD SUCCESSFUL e será gerado o arquivo projeto-bcd-01-1.0-SNAPSHOT-all.jar em [projeto-bcd-01/build/libs](projeto-bcd-01/build/libs). Agora para executar é só usar o comando abaixo:
 
 ```shell
     java -jar build/libs/projeto-bcd-01-1.0-SNAPSHOT-all.jar

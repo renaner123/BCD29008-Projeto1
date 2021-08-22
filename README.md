@@ -5,10 +5,10 @@
    * [Funcionalidades implementadas](#Funcionalidades-implementadas) 
    * [Regras de négocios implementadas](#Regras-de-négocios-implementadas)
    * [Digrama ER](#Diagrama-ER)
-   * [Instruções para compilar e executar o projeto](#Instruções-para-compilar-e-executar-o-projeto)
-
-   * [Instruções para fazer emprestimos](#Instruções-para-fazer-emprestimos)
    * [Conexão com o banco de dados](#Conexão-com-o-banco-de-dados)
+   * [Instruções para compilar e executar o projeto](#Instruções-para-compilar-e-executar-o-projeto)
+   * [Instruções para fazer emprestimos](#Instruções-para-fazer-emprestimos)
+
 
 <!--te-->
 

@@ -8,7 +8,7 @@
    * [Instruções para compilar e executar o projeto](#Instruções-para-compilar-e-executar-o-projeto)
 
    * [Instruções para fazer emprestimos](#Instruções-para-fazer-emprestimos)
-
+   * [Conexão com o banco de dados](#Conexão-com-o-banco-de-dados)
 
 <!--te-->
 
@@ -51,6 +51,11 @@ O projeto proposto pode ser visto neste [arquivo](img/projeto1.pdf).
    <img src="modelagem.png" />
 </div>
 
+## Conexão com o banco de dados
+
+O projeto está configurado pra acessar um servidor gerenciado pelo professor da disciplina. Para testar em outro banco é necessário configurar os dados de acesso no arquivo [database.properties](projeto-bcd-01/src/main/resources/). Para povoar o banco de dados pode-se usar o script [ddl-dml.sql](ddl-dml.sql).
+
+
 ## Instruções para compilar e executar o projeto
 
 Pra compilar o projeto, é necessário ir ao diretório raiz do projeto e usar o comando:
@@ -75,6 +80,7 @@ Para executar a classe Principal da pasta raiz será necessário usar o comando 
 ```shell
    java -jar out/artifacts/projeto_bcd_01_main_jar/projeto-bcd-01.main.jar
 ```
+
 
 ## Instruções para fazer emprestimos
 

@@ -14,7 +14,7 @@
 
 ## Projeto proposto
 
-O projeto proposto pode ser visto neste [arquivo](img/projeto1.pdf).
+O projeto proposto pode ser visto neste [arquivo](img/projeto1.pdf). Em resumo é um Sistema para empréstimos de equipamentos e kit de ensino usando uma aplicação Java Desktop + MySql
 
 ## Funcionalidades implementadas
 

@@ -1,3 +1,5 @@
+[![Java CI with Gradle](https://github.com/renaner123/BCD29008-Projeto1/actions/workflows/gradle.yml/badge.svg?branch=main)](https://github.com/renaner123/BCD29008-Projeto1/actions/workflows/gradle.yml)
+
 ## Sistema para empréstimos de equipamentos e kit de ensino
 
 <!--ts-->
